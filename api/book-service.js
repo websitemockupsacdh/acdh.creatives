@@ -39,7 +39,7 @@ const confirmationEmail = ({ name, email, service, budget, details }) => {
         <div style="background:#1a1a1a;border-bottom:1px solid #333;padding:10px;font-size:14px;line-height:1.5;color:#fff;">${safe.details}</div>
         <a href="${website}#contact" style="display:block;background:#c2ff3d;color:#000;text-align:center;padding:14px 0;font-family:monospace;font-weight:700;font-size:13px;text-decoration:none;border-radius:4px;margin-top:20px;">VIEW FULL REQUEST &amp; CONTACT ACDH ↗</a>
       </div>
-      <p style="font-size:14px;line-height:1.6;color:#ccc;margin:0 0 40px;"><strong style="color:#fff;">Next Steps:</strong> Your inquiry has been received. Monica will review the details and reply within 24 hours to continue the conversation and schedule a short discovery call.</p>
+      <p style="font-size:14px;line-height:1.6;color:#ccc;margin:0 0 40px;"><strong style="color:#fff;">Next Steps:</strong> Your inquiry has been received. ACDH Creatives will review the details and reply within 24 hours to continue the conversation and schedule a short discovery call.</p>
       <div style="border-top:1px solid #222;padding-top:25px;text-align:center;">
         <div style="font-family:monospace;font-weight:900;font-size:18px;letter-spacing:-1px;color:#fff;margin-bottom:15px;"><span style="color:#c2ff3d;">A</span>CDH CREATIVES</div>
         <div style="margin-bottom:15px;"><a href="${website}#about" style="color:#a1a1a1;text-decoration:none;font-size:13px;margin:0 6px;">About</a><a href="${website}#services" style="color:#a1a1a1;text-decoration:none;font-size:13px;margin:0 6px;">Services</a><a href="${website}#work" style="color:#a1a1a1;text-decoration:none;font-size:13px;margin:0 6px;">Mockup Websites</a><a href="${website}#products" style="color:#a1a1a1;text-decoration:none;font-size:13px;margin:0 6px;">Digital Books</a><a href="${website}#contact" style="color:#a1a1a1;text-decoration:none;font-size:13px;margin:0 6px;">Contact</a></div>
@@ -76,7 +76,7 @@ export default async function handler(request, response) {
   })
 
   try {
-    const text = `Your project inquiry has been received by ACDH Creatives.\n\nName: ${name}\nEmail: ${email}\nService: ${service}\nBudget: ${budget || 'Not specified'}\n\nProject details:\n${details}\n\nMonica will reply within 24 hours.\n${website}`
+    const text = `Your project inquiry has been received by ACDH Creatives.\n\nName: ${name}\nEmail: ${email}\nService: ${service}\nBudget: ${budget || 'Not specified'}\n\nProject details:\n${details}\n\nACDH Creatives will reply within 24 hours.\n${website}`
     const message = {
       from: `ACDH Creative <${emailUser}>`,
       replyTo: email,
