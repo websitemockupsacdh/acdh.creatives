@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 
 const sender = 'acdh.creatives@gmail.com'
 const website = 'https://acdhcreatives.vercel.app/'
-const recipients = [
+const defaultRecipients = [
   { email: 'decastromoon@gmail.com', name: 'Moon' },
   { email: 'jhonsandrelm@gmail.com', name: 'Jhonsandrel' },
 ]
@@ -24,6 +24,14 @@ const newsletterEmail = (name) => {
 
 export default async function handler(request, response) {
   if (request.method !== 'POST') return response.status(405).json({ error: 'Method not allowed' })
+
+  const requestedEmail = request.body?.email
+  const recipients = requestedEmail
+    ? [{ email: requestedEmail, name: request.body?.name || requestedEmail.split('@')[0] }]
+    : defaultRecipients
+  if (recipients.some(({ email }) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) {
+    return response.status(400).json({ error: 'Please provide a valid recipient email.' })
+  }
 
   const emailUser = process.env.GMAIL_USER || process.env.EMAIL_USER
   const emailPassword = process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_PASS
