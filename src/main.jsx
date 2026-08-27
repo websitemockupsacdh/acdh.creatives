@@ -1,6 +1,8 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
+import logoLight from '../2.png'
+import logoDark from '../8.png'
 
 const services = [
   { number: '01', title: 'Branding & identity', text: 'Logos, color systems, typography and practical brand guidelines for a credible first impression.', application: 'For startups, contractors and growing teams that need one consistent identity across logos, uniforms, signage, documents and social profiles.', packages: 'Brand Starter ₱2,500 · Brand Builder ₱5,000 · Brand Pro ₱9,000', deliverables: 'Logo system, color palette, font pairing, business cards, profile and cover assets, plus brand guidelines.' },
@@ -45,7 +47,7 @@ function App() {
     <div className={light ? 'site light' : 'site'}>
       <div className="grain" />
       <header className="nav wrap">
-        <a href="#top" className="logo-link"><img className="logo logo-dark" src="/8.png" alt="ACDH Creatives" /><img className="logo logo-light" src="/2.png" alt="ACDH Creatives" /></a>
+        <a href="#top" className="logo-link"><img className="logo logo-dark" src={logoDark} alt="ACDH Creatives" /><img className="logo logo-light" src={logoLight} alt="ACDH Creatives" /></a>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? 'Close' : 'Menu'} <i /></button>
         <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
@@ -96,7 +98,7 @@ function App() {
         <section id="contact" className="contact wrap"><div className="contact-top"><p className="eyebrow"><span className="pulse" /> Let’s make something considered</p><h2>Have a project<br /><em>in mind?</em></h2><p className="contact-copy">Tell me what you’re building. I’ll help you find the clearest, most useful way to bring it to life. Replies are available every day.</p></div><form className="booking-form" onSubmit={submitBooking}><div className="form-title"><span>Start a service inquiry</span><small>Replies available every day</small></div><label>Your name<input name="name" required placeholder="Jane Smith" /></label><label>Email address<input name="email" required type="email" placeholder="you@company.com" /></label><label>What can I help with?<select name="service" defaultValue=""><option value="" disabled>Select a service</option><option>Branding & identity</option><option>Marketing & social media</option><option>Documents & presentations</option><option>Digital & creative artwork</option><option>Marketing plan & business support</option><option>Website development</option></select></label><label>Estimated budget<select name="budget" defaultValue=""><option value="" disabled>Select a range</option><option>₱1,000 – ₱5,000</option><option>₱5,000 – ₱20,000</option><option>₱20,000 – ₱40,000</option><option>₱40,000+</option></select></label><label className="full">Tell me about it<textarea name="details" required placeholder="A few lines about your goals, timeline or what you need..." /></label><button className="button primary full" type="submit">{sent ? 'Opening your email client...' : 'Book a service'} <span>↗</span></button></form></section>
       </main>
 
-      <footer className="footer wrap"><a href="#top" className="logo-link"><img className="logo logo-dark" src="/8.png" alt="ACDH Creatives" /><img className="logo logo-light" src="/2.png" alt="ACDH Creatives" /></a><p>Monica De Castro<br />Creative & digital services</p><div className="footer-links"><a href="mailto:acdh.creatives@gmail.com">Email ↗</a><a href="https://facebook.com/decastro.monica.santoc" target="_blank" rel="noreferrer">Facebook ↗</a><a href="#top">Back to top ↑</a></div><small>© 2025 ACDH Creative Studio</small></footer>
+      <footer className="footer wrap"><a href="#top" className="logo-link"><img className="logo logo-dark" src={logoDark} alt="ACDH Creatives" /><img className="logo logo-light" src={logoLight} alt="ACDH Creatives" /></a><p>Monica De Castro<br />Creative & digital services</p><div className="footer-links"><a href="mailto:acdh.creatives@gmail.com">Email ↗</a><a href="https://facebook.com/decastro.monica.santoc" target="_blank" rel="noreferrer">Facebook ↗</a><a href="#top">Back to top ↑</a></div><small>© 2025 ACDH Creative Studio</small></footer>
     </div>
   )
 }
