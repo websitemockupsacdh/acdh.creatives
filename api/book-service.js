@@ -24,10 +24,6 @@ const confirmationEmail = ({ name, email, service, budget, details }) => {
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ACDH Creatives Inquiry Received</title></head>
 <body style="margin:0;padding:20px 0;background:#0b0b0b;font-family:Arial,Helvetica,sans-serif;color:#fff;-webkit-font-smoothing:antialiased;">
   <div style="max-width:600px;margin:0 auto;background:#111;border:1px solid #222;border-radius:8px;overflow:hidden;">
-    <div style="background:#e5e5e5;color:#000;padding:12px 20px;font-family:monospace;font-size:13px;border-bottom:1px solid #ccc;">
-      <strong>FROM:</strong> ACDH Creatives &lt;acdh.creatives@gmail.com&gt; | <strong>TO:</strong> ${safe.name}<br>
-      <strong>SUBJECT:</strong> Re: ${safe.service} Inquiry Received - ACDH Creatives
-    </div>
     <div style="padding:40px 30px;">
       <h1 style="font-size:32px;line-height:1.15;margin:0 0 10px;color:#fff;">Your Project Inquiry Details</h1>
       <h2 style="font-size:28px;line-height:1.2;margin:0 0 30px;color:#c2ff3d;">Here are the details we received:</h2>
@@ -81,15 +77,17 @@ export default async function handler(request, response) {
 
   try {
     const text = `Your project inquiry has been received by ACDH Creatives.\n\nName: ${name}\nEmail: ${email}\nService: ${service}\nBudget: ${budget || 'Not specified'}\n\nProject details:\n${details}\n\nMonica will reply within 24 hours.\n${website}`
-    await transporter.sendMail({
+    const message = {
       from: `ACDH Creative <${emailUser}>`,
-      to: recipient,
-      cc: email,
       replyTo: email,
       subject: `Re: ${service} Inquiry Received - ACDH Creatives`,
       text,
       html: confirmationEmail({ name, email, service, budget, details }),
-    })
+    }
+    await Promise.all([
+      transporter.sendMail({ ...message, to: recipient }),
+      transporter.sendMail({ ...message, to: email }),
+    ])
     return response.status(200).json({ sent: true })
   } catch (error) {
     console.error('Book service email failed:', error)
