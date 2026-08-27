@@ -97,8 +97,8 @@ function App() {
             <div className="hero-actions"><a className="button primary" href="#contact">Start a project <span>↗</span></a><a className="text-link" href="#work">See mockup websites <span>↓</span></a></div>
           </div>
           <div className="hero-art reveal delay-one" aria-label="Abstract layered glass artwork">
-            <div className="art-orbit" /><div className="art-card card-a">ACDH<br /><strong>CREATIVE</strong></div><div className="art-card card-b">DESIGN<br />THAT<br /><strong>WORKS</strong></div><div className="art-line" /><div className="glass-chip chip-a">GLASS / 01</div><div className="glass-chip chip-b">BUILD<br />BETTER</div>
-            <span className="art-label">01 / 04<br /><b>Form follows function</b></span>
+            <div className="art-orbit" /><div className="art-card card-a">ACDH<br /><strong>CREATIVE</strong></div><div className="art-card card-b">WEB<br />PRESENCE<br /><strong>BUILT</strong></div><div className="art-line" /><div className="glass-chip chip-a">WEB / 01</div><div className="glass-chip chip-b">BUILD<br />ONLINE</div>
+            <span className="art-label">01 / 04<br /><b>Digital presence that works</b></span>
           </div>
         </section>
 
