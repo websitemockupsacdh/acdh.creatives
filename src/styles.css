@@ -23,6 +23,8 @@
 .light .logo-dark { display: none; }
 .light .logo-light { display: block; }
 .mockup-note { color: var(--muted); line-height: 1.7; font-size: 13px; max-width: 330px; margin: 0 0 45px !important; }
+.button:disabled { opacity: .58; cursor: wait; }
+.form-error { color: #d96b6b; font: 11px var(--mono); line-height: 1.5; margin: 0; }
 .mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .mockup-browser { display: block; border: 1px solid var(--line); background: var(--panel); transition: transform .25s ease, box-shadow .25s ease; }
 .mockup-browser:hover { transform: translateY(-6px); box-shadow: 0 18px 45px rgba(0,0,0,.2); }

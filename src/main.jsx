@@ -32,6 +32,8 @@ function App() {
   const [light, setLight] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [formError, setFormError] = useState('')
   const [activeService, setActiveService] = useState(null)
 
   useEffect(() => {
@@ -47,13 +49,26 @@ function App() {
     }
   }, [activeService])
 
-  const submitBooking = (event) => {
+  const submitBooking = async (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    const subject = `New service inquiry from ${data.get('name')}`
-    const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nService: ${data.get('service')}\nBudget: ${data.get('budget')}\n\nProject details:\n${data.get('details')}`
-    window.location.href = `mailto:acdh.creatives@gmail.com,decastro.monica.santoc@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    setSent(true)
+    setSending(true)
+    setFormError('')
+    try {
+      const result = await fetch('/api/book-service', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(data.entries())),
+      })
+      const payload = await result.json()
+      if (!result.ok) throw new Error(payload.error)
+      setSent(true)
+      event.currentTarget.reset()
+    } catch (error) {
+      setFormError(error.message || 'The inquiry could not be sent. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -67,7 +82,7 @@ function App() {
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#work" onClick={() => setMenuOpen(false)}>Mockup websites</a>
           <a href="#products" onClick={() => setMenuOpen(false)}>Digital books</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>{sent ? 'Inquiry Sent' : 'Book a service'}</a>
         </nav>
         <button className="mode-toggle" onClick={() => setLight(!light)} aria-label="Toggle color mode"><b>{light ? '☾' : '☼'}</b></button>
       </header>
@@ -109,7 +124,7 @@ function App() {
           <div className="products-content"><div className="section-heading"><div><h2>Ideas you can<br /><em>take with you.</em></h2><p className="mockup-note">Practical digital guides, planners and prompt libraries for building, working and creating with more clarity.</p></div><a className="text-link" href="https://acdhcreatives.gumroad.com/" target="_blank" rel="noreferrer">Shop all books <span>↗</span></a></div><div className="product-grid">{products.map((product, index) => <a className="product-card" href={product.url} target="_blank" rel="noreferrer" key={product.title}><div className={`product-cover ${product.tone}`}><span className="cover-index">0{index + 1}</span><span className="cover-brand">ACDH / DIGITAL EDITIONS</span><strong>{product.title}</strong><small>{product.subtitle}</small><i>↗</i></div><div className="product-meta"><h3>{product.tag}</h3><p>View on Gumroad</p></div></a>)}</div></div>
         </section>
 
-        <section id="contact" className="contact wrap"><div className="contact-top"><p className="eyebrow"><span className="pulse" /> Let’s make something considered</p><h2>Have a project<br /><em>in mind?</em></h2><p className="contact-copy">Tell me what you’re building. I’ll help you find the clearest, most useful way to bring it to life. Replies are available every day.</p></div><form className="booking-form" onSubmit={submitBooking}><div className="form-title"><span>Start a service inquiry</span><small>Replies available every day</small></div><label>Your name<input name="name" required placeholder="Jane Smith" /></label><label>Email address<input name="email" required type="email" placeholder="you@company.com" /></label><label>What can I help with?<select name="service" defaultValue=""><option value="" disabled>Select a service</option><option>Branding & identity</option><option>Marketing & social media</option><option>Documents & presentations</option><option>Digital & creative artwork</option><option>Marketing plan & business support</option><option>Website development</option></select></label><label>Estimated budget<select name="budget" defaultValue=""><option value="" disabled>Select a range</option><option>₱1,000 – ₱5,000</option><option>₱5,000 – ₱20,000</option><option>₱20,000 – ₱40,000</option><option>₱40,000+</option></select></label><label className="full">Tell me about it<textarea name="details" required placeholder="A few lines about your goals, timeline or what you need..." /></label><button className="button primary full" type="submit">{sent ? 'Opening your email client...' : 'Book a service'} <span>↗</span></button></form></section>
+        <section id="contact" className="contact wrap"><div className="contact-top"><p className="eyebrow"><span className="pulse" /> Let’s make something considered</p><h2>Have a project<br /><em>in mind?</em></h2><p className="contact-copy">Tell me what you’re building. I’ll help you find the clearest, most useful way to bring it to life. Replies are available every day.</p></div><form className="booking-form" onSubmit={submitBooking}><div className="form-title"><span>Start a service inquiry</span><small>Replies available every day</small></div><label>Your name<input name="name" required placeholder="Jane Smith" /></label><label>Email address<input name="email" required type="email" placeholder="you@company.com" /></label><label>What can I help with?<select name="service" defaultValue=""><option value="" disabled>Select a service</option><option>Branding & identity</option><option>Marketing & social media</option><option>Documents & presentations</option><option>Digital & creative artwork</option><option>Marketing plan & business support</option><option>Website development</option></select></label><label>Estimated budget<select name="budget" defaultValue=""><option value="" disabled>Select a range</option><option>₱1,000 – ₱5,000</option><option>₱5,000 – ₱20,000</option><option>₱20,000 – ₱40,000</option><option>₱40,000+</option></select></label><label className="full">Tell me about it<textarea name="details" required placeholder="A few lines about your goals, timeline or what you need..." /></label>{formError && <p className="form-error full" role="alert">{formError}</p>}<button className="button primary full" type="submit" disabled={sending}>{sending ? 'Sending inquiry...' : sent ? 'Inquiry Sent' : 'Book a service'} <span>↗</span></button></form></section>
       </main>
 
       <footer className="footer wrap"><a href="#top" className="logo-link"><img className="logo logo-dark" src={logoDark} alt="ACDH Creatives" /><img className="logo logo-light" src={logoLight} alt="ACDH Creatives" /></a><p>Monica De Castro<br />Creative & digital services</p><div className="footer-links"><a href="mailto:acdh.creatives@gmail.com">Email ↗</a><a href="https://facebook.com/decastro.monica.santoc" target="_blank" rel="noreferrer">Facebook ↗</a><a href="#top">Back to top ↑</a></div><small>© 2025 ACDH Creative Studio</small></footer>
