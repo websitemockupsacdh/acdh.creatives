@@ -97,3 +97,10 @@
 .detail-columns p { color: var(--muted); font-size: 13px; line-height: 1.65; margin: 12px 0 0; }
 @keyframes detail-swipe { from { opacity: 0; transform: translateX(70px) rotate(2deg); } to { opacity: 1; transform: translateX(0) rotate(0); } }
 @media (max-width: 800px) { .service-list { grid-template-columns: 1fr; } .service-list-active .service:not(.service-selected) { transform: translateX(-10px) scale(.97); } .service-detail { padding: 22px; } .detail-columns { grid-template-columns: 1fr; gap: 18px; } .service-detail .button { width: 100%; } }
+.modal-open { overflow: hidden; }
+.service-modal { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 110px 24px 30px; background: rgba(7, 10, 7, .58); backdrop-filter: blur(10px); animation: modal-fade .3s ease both; }
+.service-modal .service-detail { width: min(900px, 100%); max-height: min(680px, calc(100vh - 140px)); overflow-y: auto; margin: 0; animation: modal-swipe .48s cubic-bezier(.2,.8,.2,1) both; }
+.service-modal .service-detail h3 { font-size: clamp(2.4rem, 6vw, 5.5rem); }
+@keyframes modal-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-swipe { from { opacity: 0; transform: translateY(45px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 800px) { .service-modal { padding: 92px 16px 20px; } .service-modal .service-detail { max-height: calc(100vh - 112px); } }

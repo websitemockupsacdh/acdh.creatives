@@ -1,4 +1,4 @@
-import { StrictMode, useState } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 import logoLight from '../2.png'
@@ -33,6 +33,19 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [sent, setSent] = useState(false)
   const [activeService, setActiveService] = useState(null)
+
+  useEffect(() => {
+    if (!activeService) return undefined
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setActiveService(null)
+    }
+    document.body.classList.add('modal-open')
+    document.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.classList.remove('modal-open')
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [activeService])
 
   const submitBooking = (event) => {
     event.preventDefault()
@@ -82,7 +95,8 @@ function App() {
 
         <section id="services" className="services wrap section-grid">
           <div className="section-kicker"><span>02</span><p>What I do</p></div>
-          <div className="services-content"><div className="section-heading"><h2>Useful creativity,<br /><em>built around you.</em></h2><p>Tap a service to see exactly what it can do, what is included and where the sample pricing starts.</p></div><div className={activeService ? 'service-list service-list-active' : 'service-list'}>{services.map((service) => { const selected = activeService?.number === service.number; return <button className={selected ? 'service service-selected' : 'service'} style={activeService ? (selected ? { opacity: .62, transform: 'translateX(-8px) scale(.98)' } : { opacity: .24, filter: 'blur(1.5px)', transform: 'translateX(-16px) scale(.97)' }) : undefined} aria-hidden={activeService ? !selected : undefined} key={service.number} onClick={() => setActiveService(service)}><span>{service.number}</span><h3>{service.title}</h3><p>{service.text}</p><b>↗</b></button> })}</div>{activeService && <article className="service-detail" key={activeService.number}><div className="detail-top"><span>{activeService.number} / SERVICE DETAIL</span><button className="detail-close" onClick={() => setActiveService(null)} aria-label="Back to all services">← Back</button></div><h3>{activeService.title}</h3><div className="detail-columns"><div><small>Best applied to</small><p>{activeService.application}</p></div><div><small>Sample price guide</small><p>{activeService.packages}</p></div><div><small>What is included</small><p>{activeService.deliverables}</p></div></div><a className="button primary" href="#contact" onClick={() => setActiveService(null)}>Book this service <span>↗</span></a></article>}</div>
+          <div className="services-content"><div className="section-heading"><h2>Useful creativity,<br /><em>built around you.</em></h2><p>Tap a service to see exactly what it can do, what is included and where the sample pricing starts.</p></div><div className={activeService ? 'service-list service-list-active' : 'service-list'}>{services.map((service) => { const selected = activeService?.number === service.number; return <button className={selected ? 'service service-selected' : 'service'} style={activeService ? (selected ? { opacity: .62, transform: 'translateX(-8px) scale(.98)' } : { opacity: .24, filter: 'blur(1.5px)', transform: 'translateX(-16px) scale(.97)' }) : undefined} aria-hidden={activeService ? !selected : undefined} key={service.number} onClick={() => setActiveService(service)}><span>{service.number}</span><h3>{service.title}</h3><p>{service.text}</p><b>↗</b></button> })}</div></div>
+        {activeService && <div className="service-modal" role="dialog" aria-modal="true" aria-labelledby="service-detail-title" onClick={() => setActiveService(null)}><article className="service-detail" key={activeService.number} onClick={(event) => event.stopPropagation()}><div className="detail-top"><span>{activeService.number} / SERVICE DETAIL</span><button className="detail-close" onClick={() => setActiveService(null)} aria-label="Back to all services">← Back</button></div><h3 id="service-detail-title">{activeService.title}</h3><div className="detail-columns"><div><small>Best applied to</small><p>{activeService.application}</p></div><div><small>Sample price guide</small><p>{activeService.packages}</p></div><div><small>What is included</small><p>{activeService.deliverables}</p></div></div><a className="button primary" href="#contact" onClick={() => setActiveService(null)}>Book this service <span>↗</span></a></article></div>}
         </section>
 
         <section id="work" className="work wrap section-grid">
