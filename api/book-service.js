@@ -64,22 +64,25 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: 'Please complete all required fields.' })
   }
 
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+  const emailUser = process.env.GMAIL_USER || process.env.EMAIL_USER
+  const emailPassword = process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_PASS
+
+  if (!emailUser || !emailPassword) {
     return response.status(500).json({ error: 'Email service is not configured yet.' })
   }
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
+      user: emailUser,
+      pass: emailPassword,
     },
   })
 
   try {
     const text = `Your project inquiry has been received by ACDH Creatives.\n\nName: ${name}\nEmail: ${email}\nService: ${service}\nBudget: ${budget || 'Not specified'}\n\nProject details:\n${details}\n\nMonica will reply within 24 hours.\n${website}`
     await transporter.sendMail({
-      from: `ACDH Creative <${process.env.GMAIL_USER}>`,
+      from: `ACDH Creative <${emailUser}>`,
       to: recipient,
       cc: email,
       replyTo: email,
