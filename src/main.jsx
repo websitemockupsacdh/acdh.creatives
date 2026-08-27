@@ -51,7 +51,8 @@ function App() {
 
   const submitBooking = async (event) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
+    const form = event.currentTarget
+    const data = new FormData(form)
     setSending(true)
     setFormError('')
     try {
@@ -63,7 +64,7 @@ function App() {
       const payload = await result.json()
       if (!result.ok) throw new Error(payload.error)
       setSent(true)
-      event.currentTarget.reset()
+      form.reset()
     } catch (error) {
       setFormError(error.message || 'The inquiry could not be sent. Please try again.')
     } finally {
