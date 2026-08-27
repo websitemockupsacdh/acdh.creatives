@@ -20,14 +20,15 @@ const products = [
   ['Start Smart', '15 things to do before starting a business', '62-page ebook', 'https://acdhcreatives.gumroad.com/l/startsmartbusiness?layout=profile'],
 ]
 
+const recipientName = new URLSearchParams(window.location.search).get('name') || 'there'
+
 function Newsletter() {
   return (
     <main className="newsletter-shell">
-      <p className="preview-label">Newsletter preview · ACDH Creatives</p>
       <table className="email" role="presentation" cellPadding="0" cellSpacing="0">
         <tbody>
           <tr><td className="email-header"><a href={website}><img src={logoDark} alt="ACDH Creatives" /></a><a className="view-link" href={website}>View website ↗</a></td></tr>
-          <tr><td className="hero-block"><p className="eyebrow"><span /> Notes from the studio · 01</p><h1>Ideas with<br /><em>structure.</em></h1><p className="hero-copy">A small dispatch from ACDH Creatives: useful design, sharper marketing and digital tools for the next thing you are building.</p><a className="button" href={contact}>Start a project <strong>↗</strong></a></td></tr>
+          <tr><td className="hero-block"><p className="greeting">Hi {recipientName}!</p><p className="eyebrow"><span /> Notes from the studio · 01</p><h1>I have exciting<br /><em>news for you.</em></h1><p className="hero-copy">ACDH Creatives is ready to help with useful design, sharper marketing and digital tools for the next thing you are building.</p><a className="button" href={contact}>Start a project <strong>↗</strong></a></td></tr>
           <tr><td className="ticker">BRANDING <b>✳</b> MARKETING <b>✳</b> WEB DEVELOPMENT <b>✳</b> DIGITAL PRODUCTS</td></tr>
           <tr><td className="content-block"><p className="kicker">What is new</p><h2>Make your next<br /><em>move clearer.</em></h2><p className="body-copy">Whether you need a stronger first impression, a website that earns trust or a practical guide to get unstuck, we build creative support around the way you actually work.</p><table className="service-table" role="presentation"> <tbody>{services.map(([number, title, text]) => <tr key={number}><td className="service-number">{number}</td><td><h3>{title}</h3><p>{text}</p></td><td className="service-arrow">↗</td></tr>)}</tbody></table><a className="text-link" href={`${website}#services`}>Explore all services <span>↗</span></a></td></tr>
           <tr><td className="promo-block"><p className="kicker">Studio promo · limited slots</p><h2>Bring the rough idea.<br /><em>We will shape it.</em></h2><p className="body-copy">Book a service inquiry and tell us what you are building. We will help you find the clearest, most useful way to bring it to life.</p><a className="button" href={contact}>Book a service <strong>↗</strong></a><p className="promo-note">Replies available every day · Batangas, PH</p></td></tr>
