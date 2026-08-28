@@ -28,6 +28,116 @@ const products = [
   { title: 'Start Smart', subtitle: '15 things to do before starting a business', tag: '62-page ebook', url: 'https://acdhcreatives.gumroad.com/l/startsmartbusiness?layout=profile', tone: 'smart' },
 ]
 
+const featureSamples = [
+  { id: 'branding', tag: 'Branding', title: 'ABC Construction', subtitle: 'Brand identity showcase', accent: '#00bf63', glow: 'rgba(0, 191, 99, 0.8)', tip: 'Build trust in every project touchpoint' },
+  { id: 'social', tag: 'Marketing', title: 'Social Engine', subtitle: 'Content marketing blueprint', accent: '#7fe9ff', glow: 'rgba(127, 233, 255, 0.8)', tip: 'Turn attention into qualified leads' },
+  { id: 'documents', tag: 'Documents', title: 'Proposal Kit', subtitle: 'B2B pitch & admin assets', accent: '#ffca7a', glow: 'rgba(255, 202, 122, 0.8)', tip: 'Close deals with clearer communication' },
+  { id: 'art', tag: 'Art', title: 'Portrait Studio', subtitle: 'Creative illustration portfolio', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.8)', tip: 'Translate stories into art that lasts' },
+  { id: 'strategy', tag: 'Strategy', title: 'Growth Radar', subtitle: 'Market intelligence roadmap', accent: '#6ee7b7', glow: 'rgba(110, 231, 183, 0.8)', tip: 'Build the next expansion with evidence' },
+  { id: 'website', tag: 'Web', title: 'Digital Presence', subtitle: 'Multi-industry web showcase', accent: '#5eead4', glow: 'rgba(94, 234, 212, 0.8)', tip: 'Create websites that convert and scale' },
+]
+
+function FeatureShowcase() {
+  const [activeFeature, setActiveFeature] = useState(0)
+  const [dragOffset, setDragOffset] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+
+  const moveFeature = (direction) => {
+    setActiveFeature((current) => (current + direction + featureSamples.length) % featureSamples.length)
+  }
+
+  const handlePointerDown = (event) => {
+    setIsDragging(true)
+    setStartX(event.clientX)
+  }
+
+  const handlePointerMove = (event) => {
+    if (!isDragging) return
+    setDragOffset(event.clientX - startX)
+  }
+
+  const handlePointerUp = () => {
+    if (dragOffset > 70) moveFeature(-1)
+    if (dragOffset < -70) moveFeature(1)
+    setDragOffset(0)
+    setIsDragging(false)
+  }
+
+  return (
+    <section className="feature-showcase wrap" aria-label="Service feature showcase">
+      <div className="feature-showcase__header">
+        <div>
+          <p className="eyebrow"><span className="pulse" /> Feature studio</p>
+          <h2>Creative systems<br /><em>for every stage.</em></h2>
+        </div>
+      </div>
+
+      <div
+        className="feature-carousel"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
+        {featureSamples.map((sample, index) => {
+          const offset = ((index - activeFeature + featureSamples.length) % featureSamples.length)
+          const normalized = offset > featureSamples.length / 2 ? offset - featureSamples.length : offset < -(featureSamples.length / 2) ? offset + featureSamples.length : offset
+          if (Math.abs(normalized) > 2) return null
+
+          const abs = Math.abs(normalized)
+          const translateX = normalized * 200 + (normalized === 0 ? dragOffset * 0.18 : 0)
+          const translateY = abs * 18
+          const scale = normalized === 0 ? 1 : 1 - abs * 0.12
+          const opacity = normalized === 0 ? 1 : abs === 1 ? 0.72 : 0.28
+          const blur = abs >= 2 ? '6px' : '0px'
+
+          return (
+            <article
+              key={sample.id}
+              className={`feature-card feature-card--${sample.id} ${normalized === 0 ? 'feature-card--active' : ''}`}
+              style={{
+                '--card-accent': sample.accent,
+                '--card-glow': sample.glow,
+                transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), 0) scale(${scale})`,
+                opacity,
+                filter: `blur(${blur})`,
+                zIndex: 100 - abs,
+              }}
+            >
+              <div className="feature-card__header">
+                <span>{sample.tag}</span>
+                <span>0{index + 1}</span>
+              </div>
+              <div className="feature-card__body">
+                <p className="feature-card__eyebrow">{sample.subtitle}</p>
+                <h3>{sample.title}</h3>
+                <p className="feature-card__tip">{sample.tip}</p>
+              </div>
+
+              <div className="feature-card__mockup">
+                <div className="mockup-window mockup-window--large">
+                  <span className="mockup-window__caption">{sample.tag}</span>
+                  <strong>ABC</strong>
+                </div>
+                <div className="mockup-stack">
+                  <div className="mockup-window mockup-window--small">
+                    <span>Key asset</span>
+                  </div>
+                  <div className="mockup-window mockup-window--small mockup-window--dark">
+                    <span>Message</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
 function App() {
   const [light, setLight] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -101,6 +211,8 @@ function App() {
             <span className="art-label">01 / 04<br /><b>Digital presence that works</b></span>
           </div>
         </section>
+
+        <FeatureShowcase />
 
         <section className="ticker"><div>BRANDING <span>✳</span> MARKETING <span>✳</span> WEB DEVELOPMENT <span>✳</span> DOCUMENTATION <span>✳</span> STRATEGY <span>✳</span></div></section>
 
