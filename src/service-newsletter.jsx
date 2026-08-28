@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import './service-newsletter.css'
 import logoDark from '../8.png'
+import { PromoTimer } from './promo-timer'
 
 const website = 'https://acdhcreatives.vercel.app/'
 const contact = `${website}#contact`
@@ -9,6 +10,7 @@ export function ServiceNewsletter({ config }) {
   return (
     <main className="service-newsletter" style={{ '--accent': config.accent, '--accent-soft': config.soft }}>
       <header className="service-nav"><a href={website}><img src={logoDark} alt="ACDH Creatives" /></a><span>{config.label} / {config.number}</span><a href={contact}>{config.cta} <b>+</b></a></header>
+      <PromoTimer newsletter={config.slug} />
       <section className="service-hero"><div className="service-hero-copy"><p className="eyebrow"><i /> ACDH CREATIVES / {config.kicker}</p><p className="hero-index">01 / 10</p><h1>{config.hero[0]}<br /><em>{config.hero[1]}</em></h1><p className="lead">{config.lead}</p><p className="muted">{config.intro}</p><a className="service-button" href={contact}>{config.cta} <span>-&gt;</span></a></div><div className="service-hero-visual"><div className="visual-glow" /><img src={config.image} alt={`${config.title} sample`} /><span className="visual-label">ACDH / {config.label}</span></div></section>
       <div className="service-marquee">{config.marquee.map((item, index) => <span key={`${item}-${index}`}>{item} <b>*</b></span>)}</div>
       <section className="service-section problem-section"><div className="section-number">02 / THE PROBLEM</div><div><h2>{config.problemTitle[0]}<br /><em>{config.problemTitle[1]}</em></h2><p className="muted section-intro">{config.problemIntro}</p><div className="problem-grid">{config.problems.map((item) => <div key={item}><b>x</b><span>{item}</span></div>)}</div><div className="result-line"><span>The result?</span><strong>{config.result}</strong></div></div></section>

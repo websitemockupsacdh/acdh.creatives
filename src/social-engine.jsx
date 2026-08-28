@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import './social-engine.css'
 import logoDark from '../8.png'
 import socialImage from '../social media.jpeg'
+import { PromoTimer } from './promo-timer'
 
 const website = 'https://acdhcreatives.vercel.app/'
 const contact = `${website}#contact`
@@ -39,6 +40,7 @@ function SocialEngine() {
         <span>SOCIAL ENGINE / 02</span>
         <a href={contact}>Plan your content <b>+</b></a>
       </header>
+      <PromoTimer newsletter="social-engine" />
 
       <section className="social-hero">
         <div className="social-hero-copy">

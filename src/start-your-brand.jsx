@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import './start-your-brand.css'
 import logoDark from '../8.png'
 import brandImage from '../branding_Acdh.jpeg'
+import { PromoTimer } from './promo-timer'
 
 const website = 'https://acdhcreatives.vercel.app/'
 const contact = `${website}#contact`
@@ -38,6 +39,7 @@ function BrandNewsletter() {
         <span>BRAND GUIDE / 01</span>
         <a href={contact}>Start your brand <b>+</b></a>
       </header>
+      <PromoTimer newsletter="start-your-brand" />
 
       <section className="brand-hero">
         <div className="hero-copy">

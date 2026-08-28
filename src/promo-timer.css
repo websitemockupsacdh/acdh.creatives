@@ -1,0 +1,7 @@
+.promo-timer { display: grid; grid-template-columns: 1fr auto; gap: 4px 18px; align-items: center; padding: 14px 18px; border: 1px solid #00bf63; background: linear-gradient(100deg, rgba(0,191,99,.16), rgba(0,191,99,.04)); color: #f2f4ed; }
+.promo-timer span { color: #00bf63; font: 10px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; }
+.promo-timer strong { color: #f2f4ed; font: 15px 'DM Mono', monospace; }
+.promo-timer small { grid-column: 1 / -1; color: #9ca49a; font: 10px 'DM Mono', monospace; }
+.promo-timer--ended { border-color: #ff6a66; }
+.promo-timer--ended span { color: #ff6a66; }
+@media (max-width: 560px) { .promo-timer { grid-template-columns: 1fr; gap: 7px; } .promo-timer strong { font-size: 13px; } }
