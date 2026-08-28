@@ -8,6 +8,12 @@ export default defineConfig({
       input: {
         main: 'index.html',
         newsletter: 'newsletter.html',
+        startYourBrand: 'start-your-brand.html',
+        socialEngine: 'social-engine.html',
+        proposalKit: 'proposal-kit.html',
+        portraitStudio: 'portrait-studio.html',
+        growthRadar: 'growth-radar.html',
+        digitalPresence: 'digital-presence.html',
       },
     },
   },
