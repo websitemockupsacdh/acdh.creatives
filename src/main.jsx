@@ -3,6 +3,18 @@ import { createRoot } from 'react-dom/client'
 import './styles.css'
 import logoLight from '../2.png'
 import logoDark from '../8.png'
+import coloredPortrait from '../colored portrait.jpg'
+import waterColorPainting from '../water color painting.jpg'
+import mixedMediaArt from '../mixed media art.jpg'
+import graphitePortrait from '../graphite portrait.jpg'
+import mixedMediaArtTwo from '../mixed media art_2.jpg'
+import digitalDrawing from '../digital drawing.png'
+import acdhBranding from '../branding_Acdh.jpeg'
+import socialMedia from '../social media.jpeg'
+import marketAnalysis from '../market analysis.jpeg'
+import proposalImage from '../proposal.jpeg'
+import websiteImage from '../website.jpeg'
+import drawingsImage from '../drawings.jpeg'
 
 const services = [
   { id: 'branding', number: '01', title: 'Branding & identity', text: 'Logos, color systems, typography and practical brand guidelines for a credible first impression.', application: 'For startups, contractors and growing teams that need one consistent identity across logos, uniforms, signage, documents and social profiles.', deliverables: 'Logo system, color palette, font pairing, business cards, profile and cover assets, plus brand guidelines.', packages: [
@@ -53,12 +65,12 @@ const products = [
 ]
 
 const featureSamples = [
-  { id: 'branding', tag: 'Branding', title: 'ABC Construction', subtitle: 'Brand identity showcase', accent: '#00bf63', glow: 'rgba(0, 191, 99, 0.35)', visual: 'brand', tip: 'Build trust in every project touchpoint', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80'] },
-  { id: 'social', tag: 'Marketing', title: 'Social Engine', subtitle: 'Content marketing blueprint', accent: '#7fe9ff', glow: 'rgba(127, 233, 255, 0.28)', visual: 'social', tip: 'Turn attention into qualified leads', image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80'] },
-  { id: 'documents', tag: 'Documents', title: 'Proposal Kit', subtitle: 'B2B pitch & admin assets', accent: '#ffca7a', glow: 'rgba(255, 202, 122, 0.26)', visual: 'documents', tip: 'Close deals with clearer communication', image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=700&q=80'] },
-  { id: 'art', tag: 'Art', title: 'Portrait Studio', subtitle: 'Creative illustration portfolio', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.24)', visual: 'art', tip: 'Translate stories into art that lasts', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80'] },
-  { id: 'strategy', tag: 'Strategy', title: 'Growth Radar', subtitle: 'Market intelligence roadmap', accent: '#6ee7b7', glow: 'rgba(110, 231, 183, 0.24)', visual: 'strategy', tip: 'Build the next expansion with evidence', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=700&q=80'] },
-  { id: 'website', tag: 'Web', title: 'Digital Presence', subtitle: 'Multi-industry web showcase', accent: '#5eead4', glow: 'rgba(94, 234, 212, 0.22)', visual: 'website', tip: 'Create websites that convert and scale', image: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80'] },
+  { id: 'branding', tag: 'Branding', title: 'ACDH Creatives', subtitle: 'Brand identity showcase', accent: '#00bf63', glow: 'rgba(0, 191, 99, 0.35)', visual: 'brand', tip: 'Build trust in every project touchpoint', image: acdhBranding, mosaic: [acdhBranding] },
+  { id: 'social', tag: 'Marketing', title: 'Social Engine', subtitle: 'Content marketing blueprint', accent: '#7fe9ff', glow: 'rgba(127, 233, 255, 0.28)', visual: 'social', tip: 'Turn attention into qualified leads', image: socialMedia, mosaic: [socialMedia] },
+  { id: 'documents', tag: 'Documents', title: 'Proposal Kit', subtitle: 'B2B pitch & admin assets', accent: '#ffca7a', glow: 'rgba(255, 202, 122, 0.26)', visual: 'documents', tip: 'Close deals with clearer communication', image: proposalImage, mosaic: [proposalImage] },
+  { id: 'art', tag: 'Art', title: 'Portrait Studio', subtitle: 'Creative illustration portfolio', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.24)', visual: 'art', tip: 'Translate stories into art that lasts', image: drawingsImage, mosaic: [drawingsImage] },
+  { id: 'strategy', tag: 'Strategy', title: 'Growth Radar', subtitle: 'Market intelligence roadmap', accent: '#6ee7b7', glow: 'rgba(110, 231, 183, 0.24)', visual: 'strategy', tip: 'Build the next expansion with evidence', image: marketAnalysis, mosaic: [marketAnalysis] },
+  { id: 'website', tag: 'Web', title: 'Digital Presence', subtitle: 'Multi-industry web showcase', accent: '#5eead4', glow: 'rgba(94, 234, 212, 0.22)', visual: 'website', tip: 'Create websites that convert and scale', image: websiteImage, mosaic: [websiteImage] },
 ]
 
 function FeatureShowcase() {
@@ -149,7 +161,8 @@ function FeatureShowcase() {
               </div>
 
               <div className="feature-card__mockup">
-                <div className="feature-visual feature-visual--mosaic" aria-label={sample.title}>
+                {sample.id === 'social' && <div className="social-platforms" aria-label="Social media platforms"><span aria-label="Facebook">f</span><span aria-label="Instagram">◎</span><span aria-label="Google">G</span><span aria-label="Threads">@</span><span aria-label="X">𝕏</span><span aria-label="YouTube">▶</span></div>}
+                <div className={`feature-visual feature-visual--mosaic ${sample.mosaic.length === 1 ? 'feature-visual--single' : ''}`} aria-label={sample.title}>
                   {sample.mosaic.map((tile, tileIndex) => (
                     <img
                       key={`${sample.id}-${tileIndex}`}
@@ -277,7 +290,7 @@ function App() {
         {activeService && <div className="service-modal" role="dialog" aria-modal="true" aria-labelledby="service-detail-title" onClick={() => setActiveService(null)}><article className="service-detail" key={activeService.number} onClick={(event) => event.stopPropagation()}><div className="detail-top"><span>{activeService.number} / SERVICE DETAIL</span><button className="detail-close" onClick={() => setActiveService(null)} aria-label="Back to all services">← Back</button></div><h3 id="service-detail-title">{activeService.title}</h3><div className="detail-columns"><div><small>Best applied to</small><p>{activeService.application}</p></div><div><small>Sample price guide</small><p>{activeService.packages.map((pkg) => `${pkg.name} ${pkg.price}`).join(' · ')}</p></div><div><small>What is included</small><p>{activeService.deliverables}</p></div></div>
         <div className="service-visual-panel" aria-label={`${activeService.title} visual sample`}>
           {featureSamples.filter((sample) => sample.id === activeService.id).map((sample) => (
-            <div className="service-visual-panel__mosaic" key={sample.id}>
+            <div className={`service-visual-panel__mosaic service-visual-panel__mosaic--${sample.id} ${sample.mosaic.length === 1 ? 'service-visual-panel__mosaic--single' : ''}`} key={sample.id}>
               {sample.mosaic.map((tile, tileIndex) => (
                 <img key={`${sample.id}-${tileIndex}`} className={`panel-art panel-art--${tileIndex + 1}`} src={tile} alt={`${sample.title} sample ${tileIndex + 1}`} />
               ))}
