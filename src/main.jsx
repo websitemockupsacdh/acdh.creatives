@@ -5,12 +5,36 @@ import logoLight from '../2.png'
 import logoDark from '../8.png'
 
 const services = [
-  { number: '01', title: 'Branding & identity', text: 'Logos, color systems, typography and practical brand guidelines for a credible first impression.', application: 'For startups, contractors and growing teams that need one consistent identity across logos, uniforms, signage, documents and social profiles.', packages: 'Brand Starter ₱2,500 · Brand Builder ₱5,000 · Brand Pro ₱9,000', deliverables: 'Logo system, color palette, font pairing, business cards, profile and cover assets, plus brand guidelines.' },
-  { number: '02', title: 'Marketing & social', text: 'On-brand content systems, pubmats, campaigns and calendars that keep your business visible.', application: 'For local businesses that need a reliable stream of promotional, announcement and social media content.', packages: 'Social Starter ₱2,000 · Social Growth ₱4,000 · Social Pro ₱7,500', deliverables: '8 to 30 social designs, captions, content calendars, campaign concepts, story templates and basic monitoring.' },
-  { number: '03', title: 'Documents & decks', text: 'Polished proposals, pitch decks, company profiles and corporate materials ready to present.', application: 'For teams preparing a client proposal, company profile, thesis, pitch deck or presentation that needs to feel clear and credible.', packages: 'Document Basic ₱1,250 · Presentation Pro ₱2,500 · Corporate Presentation ₱5,000', deliverables: 'Up to 10, 20 or 40 pages/slides with layout, graphics, image editing, infographics and branded templates.' },
-  { number: '04', title: 'Digital & creative art', text: 'Custom illustration, mural concepts, 3D visualization and artwork built to stand out.', application: 'For brands, spaces and personal projects that need a custom visual, illustration, mural concept or presentation-ready artwork.', packages: 'Creative Basic ₱1,000 · Creative Custom ₱2,500 · Art & Mural Pro from ₱6,000', deliverables: 'Custom composition, multiple elements, backgrounds, high-resolution files, perspective presentation and client mockups.' },
-  { number: '05', title: 'Marketing strategy', text: 'Market analysis, positioning and measurable roadmaps that turn good ideas into action.', application: 'For businesses ready to understand their audience, sharpen their positioning and turn marketing into a measurable plan.', packages: 'Marketing Starter ₱2,500 · Marketing Growth ₱5,000 · Strategy Pro ₱10,000', deliverables: 'Market and competitor analysis, target customer profile, positioning, content plan, KPIs and a 30 or 90-day roadmap.' },
-  { number: '06', title: 'Website development', text: 'Responsive business websites with galleries, inquiry systems, SEO structure and deployment.', application: 'For construction firms, service providers and startups that need a professional online presence and a clear path for inquiries.', packages: 'Website Starter ₱12,500 · Business Website Pro ₱18,500 · Complete Digital Presence ₱30,000', deliverables: 'Responsive pages, portfolio and services showcase, inquiry form, maps, social integration, domain connection and deployment.' },
+  { id: 'branding', number: '01', title: 'Branding & identity', text: 'Logos, color systems, typography and practical brand guidelines for a credible first impression.', application: 'For startups, contractors and growing teams that need one consistent identity across logos, uniforms, signage, documents and social profiles.', deliverables: 'Logo system, color palette, font pairing, business cards, profile and cover assets, plus brand guidelines.', packages: [
+    { name: 'Brand Starter', price: '₱2,500', detail: '1 core logo concept + basic identity setup', featured: false },
+    { name: 'Brand Builder', price: '₱5,000', detail: 'Expanded identity kit with brand usage directions', featured: false },
+    { name: 'Brand Pro', price: '₱9,000', detail: 'Full strategic identity package for premium positioning', featured: true }
+  ] },
+  { id: 'social', number: '02', title: 'Marketing & social', text: 'On-brand content systems, pubmats, campaigns and calendars that keep your business visible.', application: 'For local businesses that need a reliable stream of promotional, announcement and social media content.', deliverables: '8 to 30 social designs, captions, content calendars, campaign concepts, story templates and basic monitoring.', packages: [
+    { name: 'Social Starter', price: '₱2,000', detail: '8 social posts with templates and basic scheduling', featured: false },
+    { name: 'Social Growth', price: '₱4,000', detail: 'Full monthly campaign calendar + content series', featured: false },
+    { name: 'Social Pro', price: '₱7,500', detail: 'Priority content production and campaign optimization', featured: true }
+  ] },
+  { id: 'documents', number: '03', title: 'Documents & decks', text: 'Polished proposals, pitch decks, company profiles and corporate materials ready to present.', application: 'For teams preparing a client proposal, company profile, thesis, pitch deck or presentation that needs to feel clear and credible.', deliverables: 'Up to 10, 20 or 40 pages/slides with layout, graphics, image editing, infographics and branded templates.', packages: [
+    { name: 'Document Basic', price: '₱1,250', detail: 'Simple branded document layout and clean design', featured: false },
+    { name: 'Presentation Pro', price: '₱2,500', detail: 'Pitch deck styling with content visualization', featured: false },
+    { name: 'Corporate Presentation', price: '₱5,000', detail: 'Full branded presentation system for serious clients', featured: true }
+  ] },
+  { id: 'art', number: '04', title: 'Digital & creative art', text: 'Custom illustration, mural concepts, 3D visualization and artwork built to stand out.', application: 'For brands, spaces and personal projects that need a custom visual, illustration, mural concept or presentation-ready artwork.', deliverables: 'Custom composition, multiple elements, backgrounds, high-resolution files, perspective presentation and client mockups.', packages: [
+    { name: 'Creative Basic', price: '₱1,000', detail: 'Single illustration or polished artwork direction', featured: false },
+    { name: 'Creative Custom', price: '₱2,500', detail: 'Custom visual system for campaigns or placements', featured: false },
+    { name: 'Art & Mural Pro', price: '₱6,000', detail: 'Premium art direction with multi-scene, high-impact output', featured: true }
+  ] },
+  { id: 'strategy', number: '05', title: 'Marketing strategy', text: 'Market analysis, positioning and measurable roadmaps that turn good ideas into action.', application: 'For businesses ready to understand their audience, sharpen their positioning and turn marketing into a measurable plan.', deliverables: 'Market and competitor analysis, target customer profile, positioning, content plan, KPIs and a 30 or 90-day roadmap.', packages: [
+    { name: 'Marketing Starter', price: '₱2,500', detail: 'Quick positioning and strategy baseline', featured: false },
+    { name: 'Marketing Growth', price: '₱5,000', detail: 'Audience analysis and tactical growth planning', featured: false },
+    { name: 'Strategy Pro', price: '₱10,000', detail: 'Roadmap, execution priorities and measurable growth plan', featured: true }
+  ] },
+  { id: 'website', number: '06', title: 'Website development', text: 'Responsive business websites with galleries, inquiry systems, SEO structure and deployment.', application: 'For construction firms, service providers and startups that need a professional online presence and a clear path for inquiries.', deliverables: 'Responsive pages, portfolio and services showcase, inquiry form, maps, social integration, domain connection and deployment.', packages: [
+    { name: 'Website Starter', price: '₱12,500', detail: 'Simple business site with a few conversion pages', featured: false },
+    { name: 'Business Website Pro', price: '₱18,500', detail: 'Multi-page branded website with stronger conversion flow', featured: false },
+    { name: 'Complete Digital Presence', price: '₱30,000', detail: 'Premium website, portfolio and automation setup', featured: true }
+  ] },
 ]
 
 const mockups = [
@@ -29,12 +53,12 @@ const products = [
 ]
 
 const featureSamples = [
-  { id: 'branding', tag: 'Branding', title: 'ABC Construction', subtitle: 'Brand identity showcase', accent: '#00bf63', glow: 'rgba(0, 191, 99, 0.35)', visual: 'brand', tip: 'Build trust in every project touchpoint', image: 'https://google.com1-TVc9Kh1D46HEXQbHnSHXaNA-SfQ9N8u' },
-  { id: 'social', tag: 'Marketing', title: 'Social Engine', subtitle: 'Content marketing blueprint', accent: '#7fe9ff', glow: 'rgba(127, 233, 255, 0.28)', visual: 'social', tip: 'Turn attention into qualified leads', image: 'https://google.com15cN6V4BusXKgmDvCIxRj1BBDPaEHSaRh' },
-  { id: 'documents', tag: 'Documents', title: 'Proposal Kit', subtitle: 'B2B pitch & admin assets', accent: '#ffca7a', glow: 'rgba(255, 202, 122, 0.26)', visual: 'documents', tip: 'Close deals with clearer communication', image: 'https://google.com17cobBmy8DJU33ftFYIU5WQXfe0G1VfN7' },
-  { id: 'art', tag: 'Art', title: 'Portrait Studio', subtitle: 'Creative illustration portfolio', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.24)', visual: 'art', tip: 'Translate stories into art that lasts', image: 'https://google.com180ADXS_JuUCSm2cfFhskYVY42M2E0oeQ' },
-  { id: 'strategy', tag: 'Strategy', title: 'Growth Radar', subtitle: 'Market intelligence roadmap', accent: '#6ee7b7', glow: 'rgba(110, 231, 183, 0.24)', visual: 'strategy', tip: 'Build the next expansion with evidence', image: 'https://google.com18zDBfyC2SaFwC_WsIhUWaRMn1nFLCkRy' },
-  { id: 'website', tag: 'Web', title: 'Digital Presence', subtitle: 'Multi-industry web showcase', accent: '#5eead4', glow: 'rgba(94, 234, 212, 0.22)', visual: 'website', tip: 'Create websites that convert and scale', image: 'https://google.com1NEgYw4QeXgoufy-iXNS7vcxe1wZealJ6' },
+  { id: 'branding', tag: 'Branding', title: 'ABC Construction', subtitle: 'Brand identity showcase', accent: '#00bf63', glow: 'rgba(0, 191, 99, 0.35)', visual: 'brand', tip: 'Build trust in every project touchpoint', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80'] },
+  { id: 'social', tag: 'Marketing', title: 'Social Engine', subtitle: 'Content marketing blueprint', accent: '#7fe9ff', glow: 'rgba(127, 233, 255, 0.28)', visual: 'social', tip: 'Turn attention into qualified leads', image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80'] },
+  { id: 'documents', tag: 'Documents', title: 'Proposal Kit', subtitle: 'B2B pitch & admin assets', accent: '#ffca7a', glow: 'rgba(255, 202, 122, 0.26)', visual: 'documents', tip: 'Close deals with clearer communication', image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=700&q=80'] },
+  { id: 'art', tag: 'Art', title: 'Portrait Studio', subtitle: 'Creative illustration portfolio', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.24)', visual: 'art', tip: 'Translate stories into art that lasts', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80'] },
+  { id: 'strategy', tag: 'Strategy', title: 'Growth Radar', subtitle: 'Market intelligence roadmap', accent: '#6ee7b7', glow: 'rgba(110, 231, 183, 0.24)', visual: 'strategy', tip: 'Build the next expansion with evidence', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=700&q=80'] },
+  { id: 'website', tag: 'Web', title: 'Digital Presence', subtitle: 'Multi-industry web showcase', accent: '#5eead4', glow: 'rgba(94, 234, 212, 0.22)', visual: 'website', tip: 'Create websites that convert and scale', image: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80', mosaic: ['https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80', 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80'] },
 ]
 
 function FeatureShowcase() {
@@ -125,13 +149,31 @@ function FeatureShowcase() {
               </div>
 
               <div className="feature-card__mockup">
-                <div className="feature-visual feature-visual--image" aria-label={sample.title}>
-                  <img className="feature-card__image" src={sample.image} alt={sample.title} />
-                </div>
-
-                <div className="feature-visual__stack" aria-hidden="true">
-                  <span className="mini-panel mini-panel--one" />
-                  <span className="mini-panel mini-panel--two" />
+                <div className="feature-visual feature-visual--mosaic" aria-label={sample.title}>
+                  {sample.mosaic.map((tile, tileIndex) => (
+                    <img
+                      key={`${sample.id}-${tileIndex}`}
+                      className={`feature-card__mosaic-image feature-card__mosaic-image--${tileIndex + 1}`}
+                      src={tile}
+                      alt={`${sample.title} preview ${tileIndex + 1}`}
+                      onError={(event) => {
+                        const visual = event.currentTarget.closest('.feature-visual--mosaic')
+                        if (visual) {
+                          visual.classList.add('feature-visual--fallback')
+                        }
+                        event.currentTarget.style.display = 'none'
+                      }}
+                    />
+                  ))}
+                  <div className="feature-visual__board" aria-hidden="true">
+                    <span className="feature-visual__chip">{sample.tag}</span>
+                    <strong>{sample.title}</strong>
+                    <div className="feature-visual__bars">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
@@ -149,11 +191,15 @@ function App() {
   const [sending, setSending] = useState(false)
   const [formError, setFormError] = useState('')
   const [activeService, setActiveService] = useState(null)
+  const [bookingService, setBookingService] = useState(null)
 
   useEffect(() => {
-    if (!activeService) return undefined
+    if (!activeService && !bookingService) return undefined
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setActiveService(null)
+      if (event.key === 'Escape') {
+        setActiveService(null)
+        setBookingService(null)
+      }
     }
     document.body.classList.add('modal-open')
     document.addEventListener('keydown', closeOnEscape)
@@ -161,7 +207,7 @@ function App() {
       document.body.classList.remove('modal-open')
       document.removeEventListener('keydown', closeOnEscape)
     }
-  }, [activeService])
+  }, [activeService, bookingService])
 
   const submitBooking = async (event) => {
     event.preventDefault()
@@ -228,7 +274,22 @@ function App() {
         <section id="services" className="services wrap section-grid">
           <div className="section-kicker"><span>02</span><p>What we do</p></div>
           <div className="services-content"><div className="section-heading"><h2>Useful creativity,<br /><em>built around you.</em></h2><p>Tap a service to see exactly what it can do, what is included and where the sample pricing starts.</p></div><div className={activeService ? 'service-list service-list-active' : 'service-list'}>{services.map((service) => { const selected = activeService?.number === service.number; return <button className={selected ? 'service service-selected' : 'service'} style={activeService ? (selected ? { opacity: .62, transform: 'translateX(-8px) scale(.98)' } : { opacity: .24, filter: 'blur(1.5px)', transform: 'translateX(-16px) scale(.97)' }) : undefined} aria-hidden={activeService ? !selected : undefined} key={service.number} onClick={() => setActiveService(service)}><span>{service.number}</span><h3>{service.title}</h3><p>{service.text}</p><b>↗</b></button> })}</div></div>
-        {activeService && <div className="service-modal" role="dialog" aria-modal="true" aria-labelledby="service-detail-title" onClick={() => setActiveService(null)}><article className="service-detail" key={activeService.number} onClick={(event) => event.stopPropagation()}><div className="detail-top"><span>{activeService.number} / SERVICE DETAIL</span><button className="detail-close" onClick={() => setActiveService(null)} aria-label="Back to all services">← Back</button></div><h3 id="service-detail-title">{activeService.title}</h3><div className="detail-columns"><div><small>Best applied to</small><p>{activeService.application}</p></div><div><small>Sample price guide</small><p>{activeService.packages}</p></div><div><small>What is included</small><p>{activeService.deliverables}</p></div></div><a className="button primary" href="#contact" onClick={() => setActiveService(null)}>Book this service <span>↗</span></a></article></div>}
+        {activeService && <div className="service-modal" role="dialog" aria-modal="true" aria-labelledby="service-detail-title" onClick={() => setActiveService(null)}><article className="service-detail" key={activeService.number} onClick={(event) => event.stopPropagation()}><div className="detail-top"><span>{activeService.number} / SERVICE DETAIL</span><button className="detail-close" onClick={() => setActiveService(null)} aria-label="Back to all services">← Back</button></div><h3 id="service-detail-title">{activeService.title}</h3><div className="detail-columns"><div><small>Best applied to</small><p>{activeService.application}</p></div><div><small>Sample price guide</small><p>{activeService.packages.map((pkg) => `${pkg.name} ${pkg.price}`).join(' · ')}</p></div><div><small>What is included</small><p>{activeService.deliverables}</p></div></div>
+        <div className="service-visual-panel" aria-label={`${activeService.title} visual sample`}>
+          {featureSamples.filter((sample) => sample.id === activeService.id).map((sample) => (
+            <div className="service-visual-panel__mosaic" key={sample.id}>
+              {sample.mosaic.map((tile, tileIndex) => (
+                <img key={`${sample.id}-${tileIndex}`} className={`panel-art panel-art--${tileIndex + 1}`} src={tile} alt={`${sample.title} sample ${tileIndex + 1}`} />
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="package-table" aria-label={`${activeService.title} pricing guide`}>
+          <div className="package-table__head"><span>Package</span><span>Price</span><span>Includes</span></div>
+          {activeService.packages.map((pkg) => <div key={pkg.name} className={pkg.featured ? 'package-table__row package-table__row--featured' : 'package-table__row'}><div><strong>{pkg.name}</strong></div><div><span>{pkg.price}</span></div><div><small>{pkg.detail}</small></div></div>)}
+        </div>
+        <button className="button primary" type="button" onClick={() => { setActiveService(null); setBookingService(activeService); }}>Book this service <span>↗</span></button></article></div>}
+        {bookingService && <div className="service-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title" onClick={() => setBookingService(null)}><article className="service-booking" onClick={(event) => event.stopPropagation()}><div className="detail-top"><span>BOOK SERVICE</span><button className="detail-close" onClick={() => setBookingService(null)} aria-label="Close booking form">Close</button></div><h3 id="booking-title">{bookingService.title}</h3><form className="booking-form booking-form--modal" onSubmit={submitBooking}><label>Your name<input name="name" required placeholder="Jane Smith" /></label><label>Email address<input name="email" required type="email" placeholder="you@company.com" /></label><label>Estimated budget<select name="budget" defaultValue=""><option value="" disabled>Select a range</option><option>₱1,000 – ₱5,000</option><option>₱5,000 – ₱20,000</option><option>₱20,000 – ₱40,000</option><option>₱40,000+</option></select></label><label>Service<select name="service" value={bookingService.title}><option>{bookingService.title}</option></select></label><label className="full">Tell us about it<textarea name="details" required placeholder="A few lines about your goals, timeline or what you need..." /></label>{formError && <p className="form-error full" role="alert">{formError}</p>}<button className="button primary full" type="submit" disabled={sending}>{sending ? 'Sending inquiry...' : sent ? 'Inquiry Sent' : 'Book a service'} <span>↗</span></button></form></article></div>}
         </section>
 
         <section id="work" className="work wrap section-grid">
