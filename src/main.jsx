@@ -29,12 +29,12 @@ const products = [
 ]
 
 const featureSamples = [
-  { id: 'branding', tag: 'Branding', title: 'ABC Construction', subtitle: 'Brand identity showcase', accent: '#00bf63', glow: 'rgba(0, 191, 99, 0.8)', tip: 'Build trust in every project touchpoint' },
-  { id: 'social', tag: 'Marketing', title: 'Social Engine', subtitle: 'Content marketing blueprint', accent: '#7fe9ff', glow: 'rgba(127, 233, 255, 0.8)', tip: 'Turn attention into qualified leads' },
-  { id: 'documents', tag: 'Documents', title: 'Proposal Kit', subtitle: 'B2B pitch & admin assets', accent: '#ffca7a', glow: 'rgba(255, 202, 122, 0.8)', tip: 'Close deals with clearer communication' },
-  { id: 'art', tag: 'Art', title: 'Portrait Studio', subtitle: 'Creative illustration portfolio', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.8)', tip: 'Translate stories into art that lasts' },
-  { id: 'strategy', tag: 'Strategy', title: 'Growth Radar', subtitle: 'Market intelligence roadmap', accent: '#6ee7b7', glow: 'rgba(110, 231, 183, 0.8)', tip: 'Build the next expansion with evidence' },
-  { id: 'website', tag: 'Web', title: 'Digital Presence', subtitle: 'Multi-industry web showcase', accent: '#5eead4', glow: 'rgba(94, 234, 212, 0.8)', tip: 'Create websites that convert and scale' },
+  { id: 'branding', tag: 'Branding', title: 'ABC Construction', subtitle: 'Brand identity showcase', accent: '#00bf63', glow: 'rgba(0, 191, 99, 0.35)', visual: 'brand', tip: 'Build trust in every project touchpoint', image: 'https://google.com1-TVc9Kh1D46HEXQbHnSHXaNA-SfQ9N8u' },
+  { id: 'social', tag: 'Marketing', title: 'Social Engine', subtitle: 'Content marketing blueprint', accent: '#7fe9ff', glow: 'rgba(127, 233, 255, 0.28)', visual: 'social', tip: 'Turn attention into qualified leads', image: 'https://google.com15cN6V4BusXKgmDvCIxRj1BBDPaEHSaRh' },
+  { id: 'documents', tag: 'Documents', title: 'Proposal Kit', subtitle: 'B2B pitch & admin assets', accent: '#ffca7a', glow: 'rgba(255, 202, 122, 0.26)', visual: 'documents', tip: 'Close deals with clearer communication', image: 'https://google.com17cobBmy8DJU33ftFYIU5WQXfe0G1VfN7' },
+  { id: 'art', tag: 'Art', title: 'Portrait Studio', subtitle: 'Creative illustration portfolio', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.24)', visual: 'art', tip: 'Translate stories into art that lasts', image: 'https://google.com180ADXS_JuUCSm2cfFhskYVY42M2E0oeQ' },
+  { id: 'strategy', tag: 'Strategy', title: 'Growth Radar', subtitle: 'Market intelligence roadmap', accent: '#6ee7b7', glow: 'rgba(110, 231, 183, 0.24)', visual: 'strategy', tip: 'Build the next expansion with evidence', image: 'https://google.com18zDBfyC2SaFwC_WsIhUWaRMn1nFLCkRy' },
+  { id: 'website', tag: 'Web', title: 'Digital Presence', subtitle: 'Multi-industry web showcase', accent: '#5eead4', glow: 'rgba(94, 234, 212, 0.22)', visual: 'website', tip: 'Create websites that convert and scale', image: 'https://google.com1NEgYw4QeXgoufy-iXNS7vcxe1wZealJ6' },
 ]
 
 function FeatureShowcase() {
@@ -54,12 +54,17 @@ function FeatureShowcase() {
 
   const handlePointerMove = (event) => {
     if (!isDragging) return
-    setDragOffset(event.clientX - startX)
+    const delta = event.clientX - startX
+    setDragOffset(delta)
   }
 
   const handlePointerUp = () => {
-    if (dragOffset > 70) moveFeature(-1)
-    if (dragOffset < -70) moveFeature(1)
+    if (!isDragging) return
+
+    const threshold = Math.min(window.innerWidth * 0.12, 90)
+    if (dragOffset > threshold) moveFeature(-1)
+    if (dragOffset < -threshold) moveFeature(1)
+
     setDragOffset(0)
     setIsDragging(false)
   }
@@ -88,22 +93,25 @@ function FeatureShowcase() {
 
           const abs = Math.abs(normalized)
           const translateX = normalized * 200 + (normalized === 0 ? dragOffset * 0.18 : 0)
-          const translateY = abs * 18
+          const translateY = abs * 12
           const scale = normalized === 0 ? 1 : 1 - abs * 0.12
-          const opacity = normalized === 0 ? 1 : abs === 1 ? 0.72 : 0.28
-          const blur = abs >= 2 ? '6px' : '0px'
+          const opacity = normalized === 0 ? 1 : abs === 1 ? 0.74 : 0.28
+          const blur = abs >= 2 ? '5px' : '0px'
+          const rotateY = normalized === 0 ? 0 : normalized * -12
+          const rotateX = normalized === 0 ? 0 : abs * 3
 
           return (
             <article
               key={sample.id}
-              className={`feature-card feature-card--${sample.id} ${normalized === 0 ? 'feature-card--active' : ''}`}
+              className={`feature-card feature-card--${sample.visual} ${normalized === 0 ? 'feature-card--active' : ''}`}
               style={{
                 '--card-accent': sample.accent,
                 '--card-glow': sample.glow,
-                transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), 0) scale(${scale})`,
+                transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), 0) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`,
                 opacity,
                 filter: `blur(${blur})`,
                 zIndex: 100 - abs,
+                transition: isDragging ? 'none' : 'transform 0.62s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease, filter 0.45s ease, border-color 0.35s ease, box-shadow 0.45s ease',
               }}
             >
               <div className="feature-card__header">
@@ -117,17 +125,13 @@ function FeatureShowcase() {
               </div>
 
               <div className="feature-card__mockup">
-                <div className="mockup-window mockup-window--large">
-                  <span className="mockup-window__caption">{sample.tag}</span>
-                  <strong>ABC</strong>
+                <div className="feature-visual feature-visual--image" aria-label={sample.title}>
+                  <img className="feature-card__image" src={sample.image} alt={sample.title} />
                 </div>
-                <div className="mockup-stack">
-                  <div className="mockup-window mockup-window--small">
-                    <span>Key asset</span>
-                  </div>
-                  <div className="mockup-window mockup-window--small mockup-window--dark">
-                    <span>Message</span>
-                  </div>
+
+                <div className="feature-visual__stack" aria-hidden="true">
+                  <span className="mini-panel mini-panel--one" />
+                  <span className="mini-panel mini-panel--two" />
                 </div>
               </div>
             </article>
